@@ -1,0 +1,51 @@
+# tmux enviroment init setting
+set -g prefix C-a
+set -g mode-keys vi
+set -sg escape-time 1
+set -g xterm-keys on
+set -g default-terminal "xterm-256color"
+set -g base-index 1
+#set -g mouse on
+set -g set-clipboard off
+
+# Default keys setup
+unbind-key C-b
+unbind-key C-Space
+bind-key C-a send-prefix
+bind-key C-l clear-history
+
+# windows keys
+bind-key -n C-d detach-client
+bind-key -n C-n new-window
+bind-key -n C-PageUp previous-window
+bind-key -n C-PageDown next-window
+bind-key -n C-n new-window
+bind-key -n C-Space next-layout
+bind-key -n M-[ copy-mode
+bind-key -n M-e split-window -h
+bind-key -n M-o split-window -v
+
+# pane keys
+bind-key -n C-q kill-pane
+bind-key -n M-1 select-pane -t 1
+bind-key -n M-2 select-pane -t 2
+bind-key -n M-3 select-pane -t 3
+bind-key -n M-4 select-pane -t 4
+bind-key -n M-5 select-pane -t 5
+bind-key -n M-6 select-pane -t 6
+bind-key -n M-Up select-pane -U
+bind-key -n M-Down select-pane -D
+bind-key -n M-Left select-pane -L
+bind-key -n M-Right select-pane -R
+bind-key -n M-= resize-pane -Z
+bind-key -n M-- select-layout main-vertical
+
+# clipboard
+bind-key -T copy-mode-vi enter send-keys -X copy-pipe-and-cancel "xclip -se c -i"
+
+# misc
+#bind-key -n F5 setw synchronize-panes on
+#bind-key -n F6 setw synchronize-panes off
+
+set -g status-style "bg=colour0 fg=colour15"
+set-window-option -g window-status-current-style bg=blue,bold
